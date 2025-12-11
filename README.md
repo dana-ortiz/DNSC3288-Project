@@ -28,7 +28,6 @@
 | **item_cnt_month_lag_2** |	input |	float |	Sales count two months prior |
 | **item_cnt_month_lag_3** |	input |	float |	Sales count three months prior |
 | **item_cnt_month_lag_6** |	input |	float |	Sales count six months prior |
-| **item_cnt_month_lag_12** |	input |	float |	Sales count twelve months prior |
 | **item_price_month** |	input |	float |	Average monthly item price |
 | **item_price_month_lag_1** | input |	float |	Previous month’s average price |
 | **price_trend** |	input |	float |	Difference between current and previous price |
@@ -47,6 +46,29 @@
   * Validation rows: ~214,000
  
 ### Test Data
-* **Source of test data**: GWU Blackboard, email `jphall@gwu.edu` for more information
+* **Source of test data**: [Kaggle Submission 10 File](https://github.com/dana-ortiz/DNSC3288-Project/blob/main/submission10.csv)
 * **Number of rows in test data**: 214,200
-* **State any differences in columns between training and test data**: None
+* **State any differences in columns between training and test data**: Test data contains only: ID, shop_id, item_id. All engineered features are recreated manually for the test period (block 33).
+
+### Model details
+* **Columns used as inputs in the final model**: 'date_block_num', 'shop_id', 'item_id', 'item_category_id', 'month', 'year', 'item_cnt_month_lag_1', 'item_cnt_month_lag_2', 'item_cnt_month_lag_3', 'item_cnt_month_lag_6', 'item_price_month', 'item_price_month_lag_1', 'price_trend', 'shop_rev', 'shop_rev_lag_1', 'item_mean, shop_mean, cat_mean, item_first_sale_block, item_age
+* **Column(s) used as target(s) in the final model**: 'item_cnt_month'
+* **Type of model**: XGBoost Regressor (gradient-boosted decision trees)
+* **Software used to implement the model**: Python, XGBoost, pandas, NumPy, scikit-learn
+* **Version of the modeling software**: AHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+* **Hyperparameters or other settings of your model**:
+```
+XGBRegressor(
+    max_depth=8,
+    min_child_weight=10,
+    n_estimators=1600,
+    learning_rate=0.02,
+    subsample=0.9,
+    colsample_bytree=0.9,
+    reg_alpha=0.2,
+    reg_lambda=1.2,
+    objective='reg:squarederror',
+    n_jobs=4,
+    tree_method='hist'
+)
+```
