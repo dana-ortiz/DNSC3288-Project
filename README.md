@@ -5,7 +5,7 @@
 * **Date:** December 2025
 * **Model Version:** 1.11
 * **License:** MIT
-* **Model Implementation Code:** [DNSC3288 Final Project](https://github.com/dana-ortiz/DNSC3288-Project/blob/main/DNSC3288%20final%20final%20(1).ipynb)
+* **Model Implementation Code:** [DNSC3288 Final Project](https://github.com/dana-ortiz/DNSC3288-Project/blob/main/DNSC3288%20Final%20Project.ipynb))
 
 ### Intended Use
 * **Intended Uses:** This model is an educational example of a one-step-ahead time-series forecasting system that predicts next-month item sales for each (shop_id, item_id) pair. The use case mirrors retail demand forecasting for academic purposes.
@@ -82,9 +82,12 @@ XGBRegressor(
 
 ### Ethical Considerations
 * **Potential negative impacts of using this model:**
-  * *Math or Software Problems:* Because of the overlapping training/validation months (block 32 is included in both), model performance on validation may be over-optimistic. The model heavily relies on historical lags meaning that items with little or no history may receive poor predictions. If future data distributions shift, the model may degrade in performance.
+  * *Math or Software Problems:* Because of the overlapping training/validation months (block 32 is included in both), model performance on validation may be over-optimistic. The model heavily relies on historical lags meaning that items with little or no history may receive poor predictions. If future data distributions shift, the model may degrade in performance. This model also takes roughly 15 minutes to run and may be heavy on memory consumption.
   *  *Real World Risks:* (If someone tried to deploy this model in a real retail context) Overestimating sales may lead to overstocking, tying up capital and causing waste. Underestimating sales may lead to stockouts, lost revenue and customer dissatisfaction. Smaller shops or items with sparse data could be systematically mispredicted, potentially disadvantaging them.
 * **Uncertainties relating to the impacts of using the model:**
- * *Math or Software Uncertainties:* The model does not incorporate external factors like holidays, promotions or macroeconomic variables. The simple feature set (monthly lags, mean-encodings, price & revenue trends) may not fully capture seasonality and promotion effects.
-  *  *Real World Uncertainties:* In real deployments, data quality issues (delayed reporting, missing records) could degrade performance. Organizational decisions could invalidate historical patterns the model depends on.
-* **Unexpected Results:** There was a large discrepancy between validation RMSE and test RMSE. The model achieved a very low validation RMSE of 0.3820, but the Kaggle public leaderboard score (test RMSE) was 1.23643, indicating substantially weaker generalization to unseen data. Upon reviewing the workflow, this discrepancy is explained by the fact that the training partition included rows from date_block_num 32, which is the same month used for validation evaluation. This resulted in data leakage, where information from the validation month influenced the model during training, artificially improving validation performance. 
+  * *Math or Software Uncertainties:* The model does not incorporate external factors like holidays, promotions or macroeconomic variables. The simple feature set (monthly lags, mean-encodings, price & revenue trends) may not fully capture seasonality and promotion effects.
+   *  *Real World Uncertainties:* In real deployments, data quality issues (delayed reporting, missing records) could degrade performance. Organizational decisions could invalidate historical patterns the model depends on.
+* **Unexpected Results:** There was a large discrepancy between validation RMSE and test RMSE. The model achieved a very low validation RMSE of 0.3820, but the Kaggle public leaderboard score (test RMSE) was 1.23643, indicating substantially weaker generalization to unseen data. Upon reviewing the workflow, this discrepancy is explained by the fact that the training partition included rows from date_block_num 32, which is the same month used for validation evaluation. This resulted in data leakage, where information from the validation month influenced the model during training, artificially improving validation performance.
+
+### AI Use Disclosure
+AI tools were used during this project for bug fixing, code troubleshooting and ideation related to feature engineering and model improvement.
