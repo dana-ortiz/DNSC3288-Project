@@ -3,7 +3,7 @@
 ### Basic Information
 * **Group Members:** Dana Ortiz, dana.ortiz@gwu.edu
 * **Date:** December 2025
-* **Model Version:** 1.10
+* **Model Version:** 1.11
 * **License:** MIT
 * **Model Implementation Code:** [DNSC3288 Final Project](https://github.com/dana-ortiz/DNSC3288-Project/blob/main/DNSC3288%20final%20final%20(1).ipynb)
 
@@ -46,7 +46,7 @@
   * Validation rows: 308,782
  
 ### Test Data
-* **Source of test data**: [Kaggle Submission 10 File](https://github.com/dana-ortiz/DNSC3288-Project/blob/main/submission10.csv)
+* **Source of test data**: [Kaggle Submission 11 File](https://github.com/dana-ortiz/DNSC3288-Project/blob/main/submission11.csv))
 * **Number of rows in test data**: 214,200
 * **State any differences in columns between training and test data**: Test data contains only: ID, shop_id, item_id. Training data (full) includes: date_block_num, shop_id, item_id, item_cnt_month (target) and all engineered features listed above.
 
@@ -76,9 +76,9 @@ XGBRegressor(
 ### Quantitative Analysis
 * **Metrics Used to Evaluate**: RMSE; see details below:
 
-| Train RMSE | Validation RMSE | Test RMSE |
+| Training RMSE | Validation RMSE | Test RMSE |
 | ------ | ------- | -------- |
-| **COME**| **BACK**  | **TO** |
+| **0.4706**| **0.3820**  | **1.23643** |
 
 ### Ethical Considerations
 * **Potential negative impacts of using this model:**
@@ -87,3 +87,4 @@ XGBRegressor(
 * **Uncertainties relating to the impacts of using the model:**
  * *Math or Software Uncertainties:* The model does not incorporate external factors like holidays, promotions or macroeconomic variables. The simple feature set (monthly lags, mean-encodings, price & revenue trends) may not fully capture seasonality and promotion effects.
   *  *Real World Uncertainties:* In real deployments, data quality issues (delayed reporting, missing records) could degrade performance. Organizational decisions could invalidate historical patterns the model depends on.
+* **Unexpected Results:** There was a large discrepancy between validation RMSE and test RMSE. The model achieved a very low validation RMSE of 0.3820, but the Kaggle public leaderboard score (test RMSE) was 1.23643, indicating substantially weaker generalization to unseen data. Upon reviewing the workflow, this discrepancy is explained by the fact that the training partition included rows from date_block_num 32, which is the same month used for validation evaluation. This resulted in data leakage, where information from the validation month influenced the model during training, artificially improving validation performance. 
