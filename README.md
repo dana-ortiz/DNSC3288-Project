@@ -9,7 +9,6 @@
 
 ### Intended Use
 * **Intended Uses:** This model is an educational example of a one-step-ahead time-series forecasting system that predicts next-month item sales for each (shop_id, item_id) pair. The use case mirrors retail demand forecasting for academic purposes.
-* **Intended Users:** DNSC3288 Professors and teaching assistants for evaluation.
 * **Out-of-Scope Use Cases:** Any commercial deployment, financial decision-making, inventory planning or real-world operational use. This model is strictly for educational demonstrations.
 
 ### Training Data
