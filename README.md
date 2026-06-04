@@ -1,11 +1,11 @@
-# DNSC3288-Project Model Card
+# Predicting Future Sales - Kaggle Set
 
 ### Basic Information
-* **Group Members:** Dana Ortiz, dana.ortiz@gwu.edu
+* **Members:** Dana Ortiz, dana.ortiz@gwu.edu
 * **Date:** December 2025
 * **Model Version:** 1.11
 * **License:** MIT
-* **Model Implementation Code:** [DNSC3288 Final Project](https://github.com/dana-ortiz/DNSC3288-Project/blob/main/DNSC3288%20Final%20Project.ipynb))
+* **Model Implementation Code:** [DNSC3288 Final Project](https://github.com/dana-ortiz/DNSC3288-Project/blob/main/DNSC3288%20Final%20Project.ipynb)
 
 ### Intended Use
 * **Intended Uses:** This model is an educational example of a one-step-ahead time-series forecasting system that predicts next-month item sales for each (shop_id, item_id) pair. The use case mirrors retail demand forecasting for academic purposes.
